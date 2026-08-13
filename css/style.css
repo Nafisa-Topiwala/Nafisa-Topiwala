@@ -2,7 +2,7 @@
                     GOOGLE FONTS
 ======================================================*/
 
-@import url("https://fonts.googleapis.com/css2?family=Dynalight&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kaushan+Script&display=swap");
 
 /*======================================================
                     ROOT VARIABLES
@@ -12,7 +12,7 @@
   --bg: #fff9fb;
 
   --text: #692607;
-  --light-text: #686868;
+  --light-text: #944b2a;
 
   --accent: #9c6644;
   --accent-light: #c08962;
@@ -43,7 +43,28 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: #fbf4f0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(111, 77, 54, 0.025) 0 1px,
+      transparent 1px 5px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.42) 0 1px,
+      transparent 1px 7px
+    ),
+    radial-gradient(
+      circle at 16% 14%,
+      rgba(156, 102, 68, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 84% 74%,
+      rgba(156, 102, 68, 0.065),
+      transparent 34%
+    );
 
   color: var(--text);
 
@@ -159,7 +180,7 @@ section {
 }
 
 .section-title h2 {
-  font-family: "", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 3rem;
 
@@ -195,7 +216,8 @@ header {
 }
 
 .navbar {
-  background: #fff9fb;
+  background: #fbf4f0;
+
   max-width: 100%;
 
   margin: auto;
@@ -212,7 +234,7 @@ header {
 }
 
 .logo h2 {
-  font-family: "Dynalight", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 2rem;
 
@@ -225,6 +247,27 @@ header {
   list-style: none;
 
   gap: 45px;
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: 3px auto;
+  border-radius: 50%;
+  background: currentColor;
+  transition: background 0.2s ease;
 }
 
 .nav-links a {
@@ -272,7 +315,7 @@ header.scrolled {
 
   -webkit-backdrop-filter: blur(18px);
 
-  background: rgba(250, 248, 244, 0.95);
+  background: rgba(251, 244, 240, 0.95);
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
@@ -331,7 +374,7 @@ header.scrolled {
 }
 
 .hero h1 {
-  font-family: "Dynalight", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 5.5rem;
 
@@ -407,28 +450,41 @@ header.scrolled {
   padding: 0 20px;
 
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 30px;
 }
 
-.large {
-  grid-column: span 8;
-}
-
-.medium {
-  grid-column: span 4;
-}
-
-.square {
-  grid-column: span 4;
-}
-
-.tall {
-  grid-column: span 4;
-}
-
-.hero-art {
+.gallery-item.hero-art {
   grid-column: 1 / -1;
+  order: 1;
+}
+
+.gallery-item.family-art,
+.gallery-item.yemen-art {
+  grid-column: span 6;
+}
+
+.gallery-item.family-art {
+  order: 2;
+}
+
+.gallery-item.yemen-art {
+  order: 3;
+}
+
+.gallery-item.paris-art {
+  grid-column: span 3;
+  order: 4;
+}
+
+.gallery-item.blue-series-art {
+  grid-column: span 5;
+  order: 5;
+}
+
+.gallery-item.london-art {
+  grid-column: span 4;
+  order: 6;
 }
 
 .gallery-item {
@@ -449,23 +505,21 @@ header.scrolled {
   transform: scale(1.04);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .hero-art,
-  .large,
-  .medium,
-  .square,
-  .tall {
+  .gallery-item.hero-art {
+    grid-column: 1 / -1;
+  }
+
+  .gallery-item.family-art,
+  .gallery-item.yemen-art,
+  .gallery-item.paris-art,
+  .gallery-item.blue-series-art,
+  .gallery-item.london-art {
     grid-column: span 1;
-  }
-}
-
-@media (max-width: 600px) {
-  .gallery {
-    grid-template-columns: 1fr;
   }
 }
 /*======================================================
@@ -503,7 +557,7 @@ header.scrolled {
 }
 
 .overlay h3 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 2rem;
 
@@ -584,6 +638,22 @@ header.scrolled {
   opacity: 1;
 
   visibility: visible;
+}
+
+.lightbox-info,
+.lightbox-info h2,
+.lightbox-info p,
+.lightbox .prev,
+.lightbox .next {
+  color: #fff3df;
+}
+
+.lightbox .prev,
+.lightbox .next {
+  border: 0;
+  background: transparent;
+  font-size: 2.5rem;
+  cursor: pointer;
 }
 
 .lightbox-image {
@@ -692,7 +762,7 @@ header.scrolled {
 }
 
 .portrait-content h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 3.2rem;
 
@@ -712,29 +782,20 @@ header.scrolled {
 
   flex-wrap: wrap;
 
-  gap: 12px;
+  gap: 0;
 
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .mediums span {
-  border: 1px solid var(--line);
-
-  padding: 10px 18px;
-
-  border-radius: 40px;
-
   font-size: 0.9rem;
-
-  background: white;
-
-  transition: 0.3s;
+  color: var(--light-text);
 }
 
-.mediums span:hover {
-  background: var(--accent);
-
-  color: white;
+.mediums span + span::before {
+  content: "•";
+  margin: 0 10px;
+  color: var(--accent);
 }
 
 /*======================================================
@@ -772,9 +833,11 @@ header.scrolled {
 }
 
 .about-content h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 3rem;
+
+  line-height: 1.05;
 
   margin-bottom: 25px;
 }
@@ -783,6 +846,12 @@ header.scrolled {
   color: var(--light-text);
 
   margin-bottom: 20px;
+}
+
+.artist-statement {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--light-text);
 }
 
 .social-links {
@@ -830,7 +899,7 @@ header.scrolled {
 }
 
 .cta h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 3rem;
 
@@ -973,17 +1042,63 @@ footer {
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-
-    gap: 20px;
+    position: relative;
+    height: 72px;
+    padding: 0 6%;
   }
 
   .nav-links {
-    gap: 22px;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 5%;
+    left: 5%;
+    display: grid;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(251, 244, 240, 0.98);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s;
+  }
 
-    flex-wrap: wrap;
+  .nav-links.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 
-    justify-content: center;
+  .nav-links a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 9px;
+    font-size: 0.95rem;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--text);
+    background: #f2e8df;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-toggle[aria-expanded="true"] {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: #f8eee8;
   }
 
   .hero {
@@ -1011,11 +1126,44 @@ footer {
   }
 
   .gallery {
-    grid-template-columns: 1fr;
+    margin: 42px auto 0;
+    padding: 0;
+    column-count: 2;
+    column-gap: 14px;
   }
 
   .gallery-item {
-    grid-row: span 28 !important;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+
+  .gallery-item.large {
+    aspect-ratio: auto;
+  }
+
+  .gallery-item.hero-art {
+    aspect-ratio: auto;
+  }
+
+  .gallery-item img {
+    height: auto;
+    object-fit: contain;
+  }
+
+  .overlay {
+    padding: 16px;
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent 65%);
+  }
+
+  .overlay h3 {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+    transform: none;
+  }
+
+  .overlay p {
+    display: none;
   }
 
   .portrait-content h2 {
@@ -1054,6 +1202,20 @@ footer {
     right: 22px;
 
     font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .gallery-item,
+  .gallery-item.hero-art,
+  .gallery-item.large {
+    aspect-ratio: auto;
+    margin-bottom: 18px;
   }
 }
 
@@ -1105,7 +1267,17 @@ footer {
   }
 
   .gallery {
-    gap: 18px;
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .gallery-item,
+  .gallery-item.hero-art {
+    aspect-ratio: auto;
+  }
+
+  .gallery-item img {
+    object-position: center;
   }
 
   .social-links {
@@ -1131,15 +1303,97 @@ footer {
   }
 }
 
+/* Keep the mobile gallery short without cropping any artwork. */
+@media (max-width: 768px) {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-count: auto;
+    gap: 14px;
+  }
+
+  .gallery-item,
+  .gallery-item.family-art,
+  .gallery-item.yemen-art,
+  .gallery-item.paris-art,
+  .gallery-item.blue-series-art,
+  .gallery-item.london-art {
+    grid-column: span 1;
+    aspect-ratio: 1;
+    margin: 0;
+    background: white;
+  }
+
+  .gallery-item.hero-art {
+    grid-column: 1 / -1;
+    aspect-ratio: auto;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .gallery-item.hero-art img {
+    height: auto;
+  }
+
+  .portraits,
+  .about {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .portrait-image,
+  .about-image {
+    width: min(62%, 250px);
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .portrait-content h2,
+  .about-content h2 {
+    font-size: 2rem;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+
+  .portrait-content p,
+  .about-content p {
+    font-size: 0.96rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .artist-statement {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .mediums {
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .cta h2 {
+    font-size: 1.9rem;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  .cta p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+}
+
 /*======================================================
             HOVER ONLY ON DESKTOP
 ======================================================*/
 
 @media (hover: hover) {
-  .gallery-item:hover {
-    transform: translateY(-10px);
-  }
-
   .btn-primary:hover {
     transform: translateY(-4px);
   }
@@ -1179,7 +1433,7 @@ footer {
 }
 
 .contact-heading h1 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Kaushan Script", cursive;
 
   font-size: 4rem;
 
@@ -1203,7 +1457,7 @@ footer {
 }
 
 .contact-info h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Kaushan Script", cursive;
 
   margin-bottom: 30px;
 
